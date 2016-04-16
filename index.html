@@ -1,0 +1,131 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Squada+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body ng-app="jFolio"  ng-controller="MenuController" layout="row">
+  <!--
+    Your HTML content here
+    md-is-locked-open="$mdMedia('gt-sm')"
+  -->
+  <md-sidenav
+    class="md-whiteframe-4dp md-sidenav-left bg1"
+    ng-cloak=""
+    md-component-id="left">
+    <md-divider></md-divider>
+    <md-list
+      flex role="navigation"
+      class="flex"
+      layout="column"
+      layout-align="start center"
+      ng-cloak="">
+      <!-- <md-list-item class="avatar">
+        <md-button ng-disabled="true" aria-label="me">
+        </md-button>
+      </md-list-item> -->
+      <md-list-item class="avatar">
+        <md-button ng-disabled="true" aria-label="me">
+          <!-- <md-icon md-svg-icon="{{u.avatar}}" class="avatar"></md-icon> -->
+          <img src="img/hedshot.png">
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <h1 class="md-display-2 bottomDiv">julian rojas</h1>
+      </md-list-item>
+      <md-list-item>
+        <md-button ui-sref='home' ng-click="leftMenu()" class="btn1">
+          <!-- <md-icon md-svg-icon="home" aria-label="home"></md-icon> -->
+            pizza
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ui-sref='about' ng-click="leftMenu()" class="btn1">
+          <!-- <md-icon md-svg-icon="about" aria-label="contact"></md-icon> -->
+            tea party
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ui-sref='contact' ng-click="leftMenu()" class="btn1">
+          <!-- <md-icon md-svg-icon="contact" aria-label="contact"></md-icon> -->
+            water
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <div class="container layout-column flex" layout="column">
+  <!-- <md-toolbar class="md-whiteframe-glow-z1" layout="row" layout-align="start end">
+      <h1 class="md-display-2">db</h1>
+      <p class="md-subhead">web dev</p>
+      <span flex></span>
+      <md-button class="md-whiteframe-2dp hide-gt-sm btn0" ng-click="leftMenu()">
+        <md-icon md-svg-icon="left" aria-label="open menu"></md-icon>
+      </md-button>
+  </md-toolbar> -->
+  <md-content id="content" flex>
+    <div class="head">
+    <md-button ng-click="leftMenu()" class="fixedButton md-warn md-raised md-fab">
+      <md-icon md-svg-icon="finger" aria-label="open menu"></md-icon>
+
+    </md-button>
+    </div>
+    <div ui-view></div>
+  </md-content>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+  <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>
+
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script>
+      var app = angular.module('jFolio', ['ui.router', 'ngMaterial']);
+      app.config(function($stateProvider, $urlRouterProvider, $mdIconProvider) {
+        $urlRouterProvider.otherwise('/pizza');
+        $stateProvider.
+          state('home', {
+            url: '/pizza',
+            templateUrl: 'partials/home.html'
+          }).
+          state('about', {
+            url: '/tea',
+            templateUrl: 'partials/about.html'
+            // controller: 'TabsController'
+          }).
+          state('contact', {
+            url: '/water',
+            templateUrl: 'partials/contact.html'
+          });
+          $mdIconProvider
+            .icon('finger', 'img/svg/fingerW.svg')
+            .icon('pizza', 'img/svg/pizzaW.svg');
+
+          })
+          .run(function($http, $templateCache){
+              // Pre-fetch icons sources by URL and cache in the $templateCache...
+              // subsequent $http calls will look there first.
+              var urls = [ 'img/svg/home.svg', 'img/svg/devbrace.svg', 'img/svg/contact.svg'];
+              angular.forEach(urls, function(url) {
+                $http.get(url, {cache: $templateCache});
+              });
+          });
+      app.controller('MenuController', function($scope, $mdSidenav){
+
+        $scope.leftMenu = function() {
+          $mdSidenav('left').toggle();
+        };
+
+      });
+  </script>
+</body>
+
+</html>

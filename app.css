@@ -1,0 +1,73 @@
+h1 {
+  font-family: 'Squada One', cursive;
+}
+iframe {
+  border: none;
+  height:100vh;
+  width:100vw;
+}
+md-list {
+  max-height:414px;
+}
+md-list-item{
+  min-height:64px !important;
+  width:100%;
+}
+md-list-item h1{
+  width: 100%;
+  text-align: center;
+}
+md-list-item .md-button {
+  padding: 10px;
+  margin: auto 0;
+  min-width: 100%;
+  font-size: 24px;
+  font-family: 'Allerta', sans-serif;
+  color: #1ca34d;
+  border-radius: none;
+  text-align: center;
+  text-transform: lowercase;
+  text-decoration:none;
+  border: none;
+  outline: none;
+}
+.fixedButton {
+  margin: 15px 15px 6px 8px;
+  border: none;
+  outline: none;
+}
+.fixedButton md-icon {
+  height:32px;
+  width:32px;
+}
+md-sidenav md-list md-list-item {
+  height:30px;
+}
+
+.head {
+  position: fixed;
+  width:100%;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+}
+.avatar {
+  width:auto;
+  height:128px;
+  margin-bottom:14px;
+}
+/*.bottomDiv {
+    border-bottom: 1px solid #dadada;
+}*/
+img {
+  width: auto;
+  height: 128px;
+  border: 5px solid #ddd;
+  border-radius: 50%;
+  margin:0;
+  /*zoom:0.70;
+  transform: translateZ(0);
+  -webkit-transform: scale(0.70);
+  -moz-transform: scale(0.70);*/
+}
